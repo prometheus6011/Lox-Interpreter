@@ -11,6 +11,11 @@ private:
 
 public:
   DoubleLinkedList() : front(nullptr), back(nullptr) {};
+  ~DoubleLinkedList() {
+    while (front != nullptr) {
+      pop_front();
+    }
+  }
 
   void push_front(const char* s) {
     Node* temp = new Node(s);
@@ -48,36 +53,65 @@ public:
 
   const char* find(const char* find_str) const {
     Node* temp_front = front;
-    while (temp_front->get_next_node(temp_front) != nullptr) {
-      if (temp_front->get() == find_str) {
-        return find_str;
+    const char* ret = "Not Found";
+    while (temp_front != nullptr) {
+      if (strcmp(temp_front->get(), find_str) == 0) {
+        ret = find_str;
       }
+      temp_front = temp_front->get_next_node(temp_front);
     }
 
-    return "Not Found";
+    while (temp_front != nullptr) {
+      temp_front = temp_front->get_next_node(temp_front);
+    }
+
+    delete temp_front;
+    return ret;
   }
 
   void pop_back() {
+    if (back == nullptr) {
+      return;
+    }
+
     Node* temp = back;
     back = back->get_prev_node(back);
-    temp->set_prev_pointer(nullptr);
-    back->set_next_pointer(nullptr);
+
+    if (back != nullptr) {
+      back->set_next_pointer(nullptr);
+    } else {
+      front = nullptr;
+    }
+
+    delete temp;
   }
 
   void pop_front() {
+    if (front == nullptr) {
+      return;
+    }
+
     Node* temp = front;
     front = front->get_next_node(front);
-    temp->set_next_pointer(nullptr);
-    front->set_prev_pointer(nullptr);
-  }
 
+    if (front != nullptr) {
+      front->set_prev_pointer(nullptr);
+    } else {
+      back = nullptr;
+    }
+
+    delete temp;
+  }
 };
 
 void print_dll(DoubleLinkedList* dll) {
-  while (dll->get_front() != nullptr) {
-    std::cout << dll->get_front()->get();
-    dll->pop_front();
+  Node* temp = dll->get_front();
+  while (temp != nullptr) {
+    std::cout << temp->get();
+    temp = temp->get_next_node(temp);
   }
+  std::cout << std::endl;
+  delete temp;
 }
 
 #endif // DOUBLE_LINKED_LIST_H
