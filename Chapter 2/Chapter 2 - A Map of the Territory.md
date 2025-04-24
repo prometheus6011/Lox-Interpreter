@@ -40,3 +40,19 @@
 - a program that emulates a hypothetical chip supporting your virtual architecture at runtime
 - every instruction must be simulated at runtime each time it executes
 ### 2.2 - Shortcuts and Alternate Routes
+##### 2.2.1 - Single-pass Compilers
+- produces output code directly in the parser, without ever allocating any syntax trees or other IRs
+- restrict the design of the language
+- when memory was so precious that a compiler might not be able to hold an entire source file
+##### 2.2.2 - Tree-walk interpreters
+- executing code right after parsing it to an AST, traverses the syntax tree one branch and leaf at a time, evaluating each node as it goes
+##### 2.2.3 - Transpilers
+- write front end for your language, produce a string of valid source code for some other language tat's about as high level as yours, use the existing compilation tools for that language as your escape
+##### 2.2.4 - Just-in-time Compilation
+- fastest way to execute code is by compiling it to machine code, but you might now know what architecture your end user's machine supports
+- compile the code to native code for the architecture their computer supports
+### 2.3 - Compilers and Interpreters
+- compiling is an implementation technique that involves translating a source language to some other - usually lower-level - form
+- a compiler translates source code to some other form but doesn't execute it
+- an interpreter takes in source code and executes it immediately, programs run from source
+- 
