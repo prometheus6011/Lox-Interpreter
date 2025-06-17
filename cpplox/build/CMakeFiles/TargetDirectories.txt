@@ -1,0 +1,3 @@
+/Users/mahinuthanapati/Git/Lox-Interpreter/cpplox/build/CMakeFiles/lox.dir
+/Users/mahinuthanapati/Git/Lox-Interpreter/cpplox/build/CMakeFiles/edit_cache.dir
+/Users/mahinuthanapati/Git/Lox-Interpreter/cpplox/build/CMakeFiles/rebuild_cache.dir
